@@ -1,19 +1,25 @@
 <template>
   <div class="hello">
+    <p>{{appEnv}}</p><hr>
     <h1>{{ msg }}</h1>
     <ul>
       <li v-for="category in categories" :key="category">{{ category }}</li>
     </ul>
     <h1>Joke</h1>
-    <p>{{ random_joke.value }}</p>
+    <p>{{ random_joke.value }}</p><hr>
+    <cardDeck />
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import cardDeck from "./CardDeck.vue"
 
 export default {
   name: 'HelloWorld',
+  components : {
+    cardDeck
+  },
   props: {
     msg: String
   },
@@ -36,7 +42,7 @@ export default {
       .then(function (response) {
         // handle success
         self_vue.categories = response.data;
-        console.log(response);
+        // console.log(response);
       })
       .catch(function (error) {
         // handle error
@@ -47,7 +53,7 @@ export default {
       .then(function (response) {
         // handle success
         self_vue.random_joke = response.data;
-        console.log(response);
+        // console.log(response);
       })
       .catch(function (error) {
         // handle error
